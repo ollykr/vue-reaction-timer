@@ -1,11 +1,7 @@
 <template>
-<!-- Process : 
-1) component mounts (mounted()) 
-2) wait for a delay ("delay") 
-3) start the timer ("startTimer")
-4) interval increases every 10ms and we store it in "reactionTime"
-5) user clicks on green block to stop timer
-6) we clear the interval to stop reactionTime 
+<!-- The goal : 
+we need to pass a user's time reaction result to App.vue and from App.vue to Results.vue
+How? We emit (send) custom event  . When we emit it, we send an extra data along with it, in this case, it is "reactionTime" (so we can access it from App.vue)
  -->
 <!-- Show a green block only if "showBlock" is true -->
   <div class="block" v-if="showBlock" @click="stopTimer">Click Me</div>
@@ -59,7 +55,8 @@ this.timer = setInterval(() => {
   // When user clicks on a green block, stops the timer
   stopTimer() {
 clearInterval(this.timer)
-console.log(this.reactionTime);
+// emit to App.vue, we give it a name 'end' (or whatever) since it is an end of our game, we also send a "reactionTime" data along with it - aka a user's score
+this.$emit('end', this.reactionTime)
   }
 }
 
