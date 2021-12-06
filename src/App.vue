@@ -5,7 +5,9 @@
 <button @click="start" :disabled="isPlaying">play</button>
 <!-- Add/display Block component -->
 <!-- Only display after clicking "Play" -->
-<!-- Pass in "delay" property as a prop and bind (v-bind:delaay or just :delay) some data (a "delay" property) to it-->
+<!-- Pass in "delay" property as a prop and bind (v-bind:delay or just :delay) some data (a "delay" property) to it-->
+<!-- If we comment the below out after "component mounted" and "component updated" hooks fired up, we will see "unmounted" hook -->
+<!-- If we navigate away from a page, "inmounted" hook is also fires up - when we work with Vue router -->
 <Block v-if="isPlaying" :delay="delay"/>
 </template>
 
