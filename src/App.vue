@@ -12,15 +12,17 @@
 <!-- We listen to the event "end" via @end -->
 <Block v-if="isPlaying" :delay="delay" @end="endGame"/>
 <!-- Outputting user's score only IF there are results -->
-<p v-if="showResults">Reaction time: {{ score }} ms</p>
+<!-- setting a prop score to be used in Results.vue, you don't have to use "score" as a name prop, but the name makes sense -->
+<Results v-if="showResults" :score="score" />
 </template>
 
 <script>
 import Block from './components/Block.vue'
+import Results from './components/Results.vue'
 
 export default {
   name: 'App',
-  components: { Block },
+  components: { Block, Results },
   data() {
     return {
       // Data properties
